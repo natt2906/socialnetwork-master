@@ -1,0 +1,20 @@
+extends layoutAuth
+
+block content
+    h1= header
+    unless friend
+        a(href="/friend/" + sender + "/" + receiver) add as friend |
+
+    a(href="/recommend/" + receiver)  recommend to a friend
+
+    form(action="", method="POST", id="commentBox")
+        textarea(placeholder="Enter your comment here!", name="comment" rows=5 cols=40)
+
+        input(type="submit", value="Submit")
+
+    ul#comments
+      each comment in comments
+        li#comment
+          p= comment.user
+          p= comment.written
+          p= comment.content

@@ -1,0 +1,107 @@
+body {
+    background-image: linear-gradient(to right top, #d16b6b, #b15d74, #8c5374, #664b6a, #464057, #3a3647, #2f2c38, #242329, #1e1c20, #171517, #0f0c0d, #000000);
+}
+
+h2 {
+    width: 50%;
+    color: white !important;
+}
+
+h1 {
+    margin-top: 50px;
+    color: white !important;
+    margin-left: 1rem;
+}
+
+.title{
+    margin-left: 1rem;
+}
+
+.btn-danger{
+    position: absolute;
+    right: 0;
+    font-size: 30px;
+    margin-right: 1rem;
+}
+
+.btn-danger a{
+    color: white !important;
+    margin: 0;
+}
+
+a{
+    color:red;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+p{
+    color:white;
+    margin-left: 1rem;
+}
+
+#credentials {
+    position: absolute;
+    right: 5px;
+    top: 70;
+}
+
+#title {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#loginErrorMessage {
+    color: red;
+    margin-top: 20px;
+}
+
+#comments {
+    border: 2px solid black;
+    margin: 50px auto;
+    list-style: none;
+    width: 70%;
+    padding-left: 0px;
+}
+
+#comment {
+    border: 1px solid  rgb(83, 83, 83);
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+#commentBox {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    color: white;
+    max-width: 500px;
+}
+
+label{
+    margin-left: 1rem;
+}
+
+input{
+    margin-left: 1rem !important;
+}
+
+/*
+* {
+    border: 1px dashed red;
+}
+*/

@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h2 login page
+    h4#loginErrorMessage You have entered an incorrect username and/or password.
+
+    form(action="/login", method="POST")
+        input(type="text", placeholder="username", name="username")
+        input(type="password", placeholder="*******", name="password")
+
+        input(type="submit")

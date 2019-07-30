@@ -1,0 +1,39 @@
+{
+  "name": "socialnetwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "v6.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctataru/socialnetwork.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ctataru/socialnetwork/issues"
+  },
+  "homepage": "https://github.com/ctataru/socialnetwork#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bootstrap": "^4.3.1",
+    "connect-flash": "^0.1.1",
+    "crypto": "^1.0.1",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mongod": "^2.0.0",
+    "mongodb": "^2.2.36",
+    "nodemailer": "^4.1.0",
+    "nodemon": "^1.19.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.3",
+    "socket.io": "^2.0.3"
+  }
+}

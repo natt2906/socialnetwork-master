@@ -1,0 +1,9 @@
+extends layoutAuth
+
+block content
+    h1= header
+
+    ul(id="friends")
+      each friend in friends
+        li(id="friend")
+          a(href="/recommend/" + recommended + "/" + friend)= friend

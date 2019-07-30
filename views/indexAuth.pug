@@ -1,0 +1,15 @@
+extends layoutAuth
+
+block content
+    h1= header
+    h2= info
+    h2= info2
+    h2= date
+
+    a(href="/users") search |
+    a(href="/friends")  friends |
+    a(href="/chat")  chat
+
+
+    p= 'There are currently ' +  analytics.users.length + ' users online in chat'
+    p= 'There is a total of ' + analytics.chatMessages + ' chat messages'

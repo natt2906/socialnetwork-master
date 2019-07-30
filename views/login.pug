@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h2(class='title') login page
+
+    form(action="/login", method="POST")
+        .form-group
+                label(for='username') username
+                input#username.form-control(type='username', name='username', placeholder='Entrer username', value='')
+        .form-group
+                label(for='password') password
+                input#password.form-control(type='password', name='password', placeholder='Entrer password', value='')
+
+        input(class="btn-primary" type="submit")

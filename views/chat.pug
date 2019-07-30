@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title socialchat
+    link(rel="stylesheet", href="css/chat.css")
+    block body
+      a(id='home', href='/') RETURN HOME
+      ul#messages
+        each message in messages
+          li= message.user + ' at ' + new Date(message.time).toISOString().slice(0, 16).replace('T', ' ') + ' :  ' + message.content
+      div#onlineUsers
+        p Online Users
+        ul
+          each onlineUser in onlineUsers
+            li#onlineUser
+              a(id='userId', href='/chat/' + user + '/' + onlineUser)= onlineUser
+      form(action='')
+        input#m(autocomplete='off')
+        button(class="btn-primary") Send
+      script(src='/socket.io/socket.io.js')
+      script(src='https://code.jquery.com/jquery-1.11.1.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')
+
+      script.
+        var user = !{JSON.stringify(user)};
+        var time = !{JSON.stringify(time)};
+        $(function () {
+        var socket = io();
+        socket.emit('authenticate', user);
+        $('#userId').on('click', function(){
+        socket.emit('room', {users: [$('#userId').text(), user], sockets: []});
+        });
+        $('form').submit(function(){
+        socket.emit('chat message', {user, time, content: $('#m').val()});
+        $('#m').val('');
+        return false;
+        });
+        socket.on('chat message', function({user, time, content}){
+        $('#messages').append($('<li>').text(user + ' at ' + new Date(time).toISOString().slice(0, 16).replace('T', ' ') + ' :  ' + content));
+        window.scrollTo(0, document.body.scrollHeight);
+        });
+        });

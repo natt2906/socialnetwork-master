@@ -1,0 +1,9 @@
+extends layoutAuth
+
+block content
+    h1= header
+
+    ul#users
+      each member in members
+        li#user
+          a(href="/user/" + member)= member

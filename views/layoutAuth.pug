@@ -1,0 +1,16 @@
+head
+    title Social Network | #{title}
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="css/style.css")
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+
+
+    body
+        div#head
+            h2
+                a(href="/", id="title") The Social Network
+            div#credentials
+            button(class="btn-danger")
+                a(href="/logout")  logout
+        hr
+        block content

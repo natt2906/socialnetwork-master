@@ -1,0 +1,47 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background-image: linear-gradient(to right top, #d16b6b, #b15d74, #8c5374, #664b6a, #464057, #3a3647, #2f2c38, #242329, #1e1c20, #171517, #0f0c0d, #000000);
+        background-repeat: no-repeat;
+        background-size: cover;
+        width:100vw;
+        height: 100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+      #home {
+       position: absolute;
+          top: 0;
+          padding: 5px 10px 10px 10px;
+          border: 1px solid rgb(255, 253, 253);
+          border-radius: 5px;
+          color: #8c5374;
+      }
+      #onlineUsers {
+          position: absolute;
+          top: 0;
+          left:0;
+          padding: 5px 10px 10px 10px;
+          border: 1px solid rgb(255, 255, 255);
+          border-radius: 5px;
+          color: white;
+      }
+
+      #userId{
+        color: #8c5374;
+      }
+
+      .btn-primary{
+          background-color: #b15d74;
+      }
+
+      #onlineUser { list-style: none; color: #8c5374; text-decoration: none; margin: 5px; text-align: center}
+      form { display:flex; flex-direction:column;position: absolute;bottom: 0;width: 50%; }
+      form input {width: 100%;height: 50px;}
+      form button {width: 100%;height: 50px;margin-top: 10px; margin-bottom:20px; }
+      #messages { border:1px solid black; list-style:none; width: 50%;height: 50%;overflow-x: auto; }
+      #messages li { 
+          padding: 5px 10px;
+          color: white;
+     }
+      #messages li:nth-child(odd) { background:palevioletred; }

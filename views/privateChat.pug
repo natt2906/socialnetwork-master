@@ -1,0 +1,70 @@
+doctype html
+html
+  head
+    title private chat
+    style.
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; background-color: lightblue;}
+      #home {
+        position: fixed;
+        top: 10px; right: 20px;
+        width: 120px; height: 30px;
+        background-color: lightgreen;
+        text-align: center;
+        line-height: 30px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+      #onlineUsers {
+          position: absolute;
+          bottom: 80px; right: 10px;
+          background-color: lightgreen;
+          padding: 5px 10px 10px 10px;
+          border: 1px solid black;
+          border-radius: 5px;
+      }
+      #onlineUser { list-style: none; text-decoration: none; margin: 5px; text-align: center}
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: lightgreen; border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { margin-bottom: 40px }
+  block body
+    a(id='home', href='/') RETURN HOME
+    ul#messages
+      each message in messages
+        li= message.user + ' at ' + new Date(message.time).toISOString().slice(0, 16).replace('T', ' ') + ' :  ' + message.content
+    div#onlineUsers
+      p Private chat with
+        span= ' ' + sender + ' and '
+        span= receiver
+    form(action='')
+      input#m(autocomplete='off')
+      button Send
+    script(src='/socket.io/socket.io.js')
+    script(src='https://code.jquery.com/jquery-1.11.1.js')
+    script.
+      var user = !{JSON.stringify(user)};
+      var time = !{JSON.stringify(time)};
+      var sender = !{JSON.stringify(sender)};
+      var receiver = !{JSON.stringify(receiver)};
+      $(function () {
+      var socket = io();
+      socket.emit('authenticate', user);
+      socket.emit('room', {users: [sender, receiver], sockets: [], messages: []});
+      socket.on('room', function(roomId){
+      $('form').submit(function(){
+      socket.emit('private message', {user, time, content: $('#m').val(), roomId});
+      $('#m').val('');
+      return false;
+      });
+      });
+      socket.on('private message', function({user, time, content}){
+      $('#messages').append($('<li>').text(user + ' at ' + new Date(time).toISOString().slice(0, 16).replace('T', ' ') + ' :  ' + content));
+      window.scrollTo(0, document.body.scrollHeight);
+      });
+      });
