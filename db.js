@@ -7,6 +7,7 @@ function mongoResults(protocol, done){
     return MongoClient.connect(MONGO_PATH, (err, db) => {
         return db.collection('users')[protocol]({}).toArray((err, result) => {
             if(err) return done(err);
+            
             return done(null, result);
         });
     });
