@@ -1,7 +1,7 @@
 'use strict';
 
 const MongoClient = require('mongodb').MongoClient;
-const MONGO_PATH = 'mongodb://localhost:27017/socialnetwork';
+const MONGO_PATH = 'mongodb+srv://natt:survous5@socialnetwork-nzoyn.mongodb.net/test?retryWrites=true&w=majority';
 
 function mongoResults(protocol, done){
     return MongoClient.connect(MONGO_PATH, (err, db) => {
