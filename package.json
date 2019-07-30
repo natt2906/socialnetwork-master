@@ -29,6 +29,7 @@
     "express-session": "^1.15.5",
     "mongod": "^2.0.0",
     "mongodb": "^2.2.36",
+    "mongoose": "^5.6.7",
     "nodemailer": "^4.1.0",
     "nodemon": "^1.19.1",
     "passport": "^0.4.0",
