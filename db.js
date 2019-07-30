@@ -1,7 +1,7 @@
 'use strict';
 
 const MongoClient = require('mongodb').MongoClient;
-const MONGO_PATH = 'mongodb+srv://natt:survous5@socialnetwork-nzoyn.mongodb.net/test?retryWrites=true&w=majority';
+const MONGO_PATH = 'mongodb://socialnetwork:survous5@ds147440.mlab.com:47440/heroku_8xw9rxcr';
 
 function mongoResults(protocol, done){
     return MongoClient.connect(MONGO_PATH, (err, db) => {
