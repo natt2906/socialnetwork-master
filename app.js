@@ -10,11 +10,21 @@ const session = require('express-session');
 const crypto = require('crypto');
 const LocalStrategy = require('passport-local').Strategy;
 const io = require('socket.io')(http);
+const mongoose = require('mongoose');
 
 const mongo = require('./db');
 const email = require('./email');
 
 const PORT = 8881;
+
+const User = require('./schema/schemaUser');
+
+mongoose.connect("mongodb://socialnetwork:survous5@ds147440.mlab.com:47440/heroku_8xw9rxcr", { useNewUrlParser: true }).then(() => {
+    console.log('Connected to mongoDB');
+}).catch(e => {
+    console.log('Error while DB connecting');
+    console.log(e);
+});
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));
@@ -250,15 +260,28 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', (req, res, next) => {
+    console.log(req.body)
   const {username, name, firstname, password, date, email} = req.body;
-  mongo.addUser(username, name, firstname, password, date, email, (err) => {
+
+  User.findOne({
+    email: email
+}, function (err, result) {
+    if (result === null) {
+        var newUser = new User({username, name, firstname, password, date, email});
+        newUser.save().then(()=> res.render('index', {
+            header: `Registered! Please log in with your new account.`,
+            title: 'Registered'
+          }));
+    }
+})
+ /*  mongo.addUser(username, name, firstname, password, date, email, (err) => {
     if(err) next(err);
 
     res.render('index', {
       header: `Registered! Please log in with your new account.`,
       title: 'Registered'
     });
-  });
+  }); */
 });
 
 app.get('/logout', (req, res, next) => {
