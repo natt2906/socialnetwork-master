@@ -1,15 +1,10 @@
 'use strict';
 
+const mongoose = require('mongoose');
+
+
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_PATH = 'mongodb://socialnetwork:survous5@ds147440.mlab.com:47440/heroku_8xw9rxcr';
-
-const db = MongoClient.connect(MONGO_PATH, (err, db) => {
-    console.log(err);
-    if(err){
-        return;
-    }
-    console.log('connecté à la base');
-});
 
 function mongoResults(protocol, done){
     return MongoClient.connect(MONGO_PATH, (err, db) => {
@@ -63,18 +58,16 @@ function mongoAddComment(protocol, receiver, sender, comment, done){
 }
 
 function mongoAdd(protocol, username, name, firstname, password, date, email, done){
-    db.collection('users')[protocol]({
-            username,
-            name,
-            firstname,
-            password,
-            date,
-            email,
-            authority: 1,
-            profile: {comments: [], friends: []},
-            chat: {loggedIn: false, rooms: []}
-        }, done);
-}
+    User.findOne({
+        email: email
+    }, function (err, result) {
+        if (result === null) {
+            var newUser = new User(User);
+            newUser.save().then(()=> res.render('index.pug'));
+        }
+    })
+    }
+
 
 function mongoAddFriend(protocol, sender, receiver, done){
     return MongoClient.connect(MONGO_PATH, (err, db) => {
