@@ -3,8 +3,11 @@
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_PATH = 'mongodb://socialnetwork:survous5@ds147440.mlab.com:47440/heroku_8xw9rxcr';
 
-const db = MongoClient.connect(MONGO_PATH, (err, db) => {
+const db = MongoClient.connect(MONGO_PATH, (err) => {
     console.log(err);
+    if(err){
+        return;
+    }
     console.log('connecté à la base');
 });
 
