@@ -3,6 +3,11 @@
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_PATH = 'mongodb://socialnetwork:survous5@ds147440.mlab.com:47440/heroku_8xw9rxcr';
 
+const db = MongoClient.connect(MONGO_PATH, (err, db) => {
+    console.log(err);
+    console.log('connecté à la base');
+});
+
 function mongoResults(protocol, done){
     return MongoClient.connect(MONGO_PATH, (err, db) => {
         return db.collection('users')[protocol]({}).toArray((err, result) => {
@@ -55,8 +60,7 @@ function mongoAddComment(protocol, receiver, sender, comment, done){
 }
 
 function mongoAdd(protocol, username, name, firstname, password, date, email, done){
-    return MongoClient.connect(MONGO_PATH, (err, db) => {
-        return db.collection('users')[protocol]({
+    db.collection('users')[protocol]({
             username,
             name,
             firstname,
@@ -67,7 +71,6 @@ function mongoAdd(protocol, username, name, firstname, password, date, email, do
             profile: {comments: [], friends: []},
             chat: {loggedIn: false, rooms: []}
         }, done);
-    });
 }
 
 function mongoAddFriend(protocol, sender, receiver, done){
