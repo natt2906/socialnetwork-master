@@ -1,5 +1,6 @@
 body {
     background-image: linear-gradient(to right top, #d16b6b, #b15d74, #8c5374, #664b6a, #464057, #3a3647, #2f2c38, #242329, #1e1c20, #171517, #0f0c0d, #000000);
+    background-repeat: no-repeat;
 }
 
 h2 {
