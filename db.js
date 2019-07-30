@@ -3,7 +3,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_PATH = 'mongodb://socialnetwork:survous5@ds147440.mlab.com:47440/heroku_8xw9rxcr';
 
-const db = MongoClient.connect(MONGO_PATH, (err) => {
+const db = MongoClient.connect(MONGO_PATH, (err, db) => {
     console.log(err);
     if(err){
         return;
